@@ -1,0 +1,9 @@
+<div class="todos">
+  <ul>
+    <li *ngFor="let todo of todos; trackBy: trackByTodo">
+      <span [class.done]="todo.done" (click)="changeTodo(todo.id)">{{ todo.name }}</span>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <a href="#" (click)="delTodo($event, todo.id)">x</a>
+    </li>
+  </ul>
+</div>

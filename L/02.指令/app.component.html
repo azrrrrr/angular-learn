@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>指令</title>
+</head>
+<body>
+  <!--   多个CSS类 -->
+  <h1 [ngClass]="classList">ngClass</h1>
+  <!--   单个CSS类 -->
+  <p [class.text]="isTest">添加/移除一个类</p>
+  <!-- 多个style -->
+  <p [ngStyle]="styleList">绿色，50px</p>
+  <!-- 单个style -->
+  <p [style.color]="col">黄色</p>
+  <!-- *ngIf  展示隐藏 -->
+  <h1 *ngIf="isShow">展示出来</h1>
+  <!-- css 展示隐藏 -->
+  <p [class.hidden]="isHidden">隐藏一下</p>
+
+
+  <!-- *ngFor -->
+  <p *ngFor="let item of nums; let i = index; let odd = odd">{{ item }} {{ i+1 }} {{ odd?'AAAA':'BBBB' }}</p>
+
+  <p *ngFor="let item of nums; let odd = odd;" [class.red] = '!odd' >{{odd?"奇数":"偶数"}}</p>
+  <!-- trackBy -->
+
+  <p *ngFor="let item of colors; ">{{ item.id }}</p>
+  <button (click)="fetchColor()">重新获取数据</button>
+
+
+</body>

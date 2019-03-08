@@ -1,0 +1,22 @@
+.home-wrapper {
+  height: 100%;
+}
+
+:host ::ng-deep .logo {
+  height: 64px;
+  background: rgba(255,255,255,);
+}
+
+:host ::ng-deep .logo img {
+  width: 100%;
+  height: 100%;
+  margin-top: 5px;
+}
+
+:host ::ng-deep .ant-avatar {
+  margin-right: 16px;
+}
+
+[nz-button] {
+  margin-right: 8px;
+}

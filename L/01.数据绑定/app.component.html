@@ -1,0 +1,26 @@
+<!-- 插值表达式 -数据 -->
+<h1>Html {{ title  }}</h1>
+<h2>{{ data }}</h2>
+<!-- 插值表达式 -JS表达式 -->
+<h1>{{ a + b }}</h1>
+<!-- 插值表达式 -方法 -->
+<h1 title="{{ title }}">{{ fn() }}</h1>
+<!-- 插值表达式 -属性绑定 -->
+<a [href]="url">百度一下~</a>
+<br>
+<br>
+<!-- 事件绑定 -->
+<button (click)="handleClick()" (mouseenter)="hamdleMouseenter()">点我啊</button>
+<br>
+<br>
+<!-- 属性绑定 -->
+<a [href]="url" (click)="handleClick()">百度~</a>
+<br>
+<br>
+<!-- 事件对象 -->
+<a [href]="url" (click)="handleClick2($event)">百度aaaaaa</a>
+<br>
+<br>
+<!-- 双向数据绑定 -->
+<input type="text" [(ngModel)]="msg">
+<h1>{{ msg }}</h1>

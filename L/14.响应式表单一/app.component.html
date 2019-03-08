@@ -1,0 +1,16 @@
+<h1>表单</h1>
+<div>
+  <label>
+    用户名：
+    <!-- 5. 通过formControl将用户中的数据与文本框绑定在一起 -->
+    <input type="text" [formControl]="username">
+  </label>
+
+  <label>
+    密码：
+    <input type="password" [formControl]="password">
+  </label>
+  <hr>
+  <p>{{ username.value }}</p>
+  <p>{{ password.value }}</p>
+</div>

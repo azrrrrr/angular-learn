@@ -1,0 +1,14 @@
+.redColor {
+  background-color: red;
+}
+.fz {
+  font-size: 16px;
+}
+.isHidden {
+  opacity: 0;
+}
+
+
+.red {
+  background-color: #f00;
+}

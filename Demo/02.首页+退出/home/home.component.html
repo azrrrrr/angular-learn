@@ -1,0 +1,46 @@
+<nz-layout class="home-wrapper">
+  <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzCollapsedWidth]="0" [nzBreakpoint]="'lg'">
+    <div class="logo">
+      <img src="https://ws2.sinaimg.cn/large/006tNc79ly1g04wcysp90j30eu06qt91.jpg" alt=" Angular-demo">
+    </div>
+    <ul nz-menu [nzTheme]="'dark'" [nzMode]="'inline'" [nzInlineCollapsed]="isCollapsed">
+      <li nz-submenu>
+        <span title><i class="anticon anticon-user"></i>员工管理</span>
+        <ul>
+          <li nz-menu-item>员工列表</li>
+          <li nz-menu-item>员工添加</li>
+        </ul>
+      </li>
+      <li nz-submenu>
+        <span title><i class="anticon anticon-smile-o"></i>角色管理</span>
+        <ul>
+          <li nz-menu-item>角色列表</li>
+          <li nz-menu-item>角色添加</li>
+        </ul>
+      </li>
+      <li nz-submenu>
+        <span title><i class="anticon anticon-lock"></i>权限管理</span>
+        <ul>
+          <li nz-menu-item>权限列表</li>
+        </ul>
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header style="background: #fff; padding:0;">
+      <div nz-row nzType="flex" nzJustify="end">
+        <div nz-col nzSpan="4">
+          <nz-avatar nzIcon="user" nzSrc="//zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"></nz-avatar>
+
+          <a nz-popconfirm nzTitle="是否确认退出?"  (nzOnConfirm)="logout()"  (nzOnCancel)="cancel()">&nbsp;&nbsp;退出</a>
+        </div>
+      </div>
+    </nz-header>
+    <nz-content style="margin:24px 16px 0;">
+      <div style="padding:24px; background: #fff; min-height: 360px;">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+    <nz-footer style="text-align: center;"> ©2019  By Angular Demo</nz-footer>
+  </nz-layout>
+</nz-layout>

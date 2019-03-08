@@ -1,0 +1,10 @@
+<div class='app'>
+  <h1>使用子路由</h1>
+  <!-- <a routerLink = '/home'>主页</a>
+  <br>
+  <a routerLink = '/about'>关于</a> -->
+
+  <a routerLink="/home" routerLinkActive="actived" [routerLinkActiveOptions]="{ exact: true }">首页</a>
+  <a routerLink="/about" routerLinkActive="actived">关于</a>
+  <router-outlet></router-outlet>
+</div>

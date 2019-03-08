@@ -1,0 +1,7 @@
+.tit{
+  text-align: center;
+}
+.done {
+  text-decoration: line-through;
+  color: gray;
+}

@@ -1,0 +1,103 @@
+<nz-table #basicTable [nzData]="employeesList" [nzFrontPagination]="false" [nzTotal]="total" [(nzPageIndex)]="curPage" [nzPageSize]="pageSize" (nzPageIndexChange)="fetchData()"   [nzLoading]="isLoading">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>姓名</th>
+        <th>性别</th>
+        <th>手机号</th>
+        <th>邮箱</th>
+        <th>入职时间</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of basicTable.data; let i = index; trackBy: trackByEmpId">
+        <td>{{ i+1 }}</td>
+        <td>{{data.name}}</td>
+        <td>{{data.gender === '1' ? '男' : '女' }}</td>
+        <td>{{data.phoneNumber}}</td>
+        <td>{{data.email}}</td>
+        <td>{{data.joinDate | date: 'yyyy-MM-dd'}}</td>
+        <td>
+          <a (click)="showEditEmployeeModal(data.id)"><span>修改</span></a>
+          
+          <nz-divider nzType="vertical"></nz-divider>
+          <a nz-popconfirm nzTitle="确定要删除吗?" nzPlacement="bottom" (nzOnConfirm)="handleDelete(data.id)"  (nzOnCancel)="handleDelcancel()">删除</a>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+
+  <!-- 修改的样式 -->
+  <nz-modal [(nzVisible)]="isShowEmployeeModal" nzTitle="编辑员工" (nzOnCancel)="handleEditEmployeeCancel()" (nzOnOk)="editEmployee()">
+      <form nz-form [formGroup]="employeeEditForm">
+        <!-- usernam -->
+        <nz-form-item>
+          <nz-form-label [nzSpan]="7" nzRequired>姓名</nz-form-label>
+          <nz-form-control [nzSpan]="12" nzHasFeedback>
+            <input nz-input formControlName="name" placeholder="请输入姓名">
+            <nz-form-explain *ngIf="employeeEditForm.get('name').dirty && employeeEditForm.get('name').errors">
+              <ng-container *ngIf="employeeEditForm.get('name').hasError('required')">
+                请填写姓名
+              </ng-container>
+              <ng-container *ngIf="employeeEditForm.get('name').hasError('minlength')">
+                姓名长度最少为2位
+              </ng-container>
+            </nz-form-explain>
+          </nz-form-control>
+        </nz-form-item>
+        <!-- gender -->
+        <nz-form-item>
+            <nz-form-label [nzSpan]="7">性别</nz-form-label>
+            <nz-form-control [nzSpan]="12"> 
+                <nz-radio-group formControlName="gender">
+                  <label nz-radio nzValue="0">男</label>
+                  <label nz-radio nzValue="1">女</label>
+                </nz-radio-group>
+            </nz-form-control>
+          </nz-form-item>
+        <!-- email -->
+        <nz-form-item>
+          <nz-form-label [nzSpan]="7" nzRequired>E-mail</nz-form-label>
+          <nz-form-control [nzSpan]="12" nzHasFeedback>
+            <input nz-input formControlName="email" placeholder="请输入邮箱" type="email">
+            <nz-form-explain *ngIf="employeeEditForm.get('email').dirty&&employeeEditForm.get('email').errors">
+              <ng-container *ngIf="employeeEditForm.get('email').hasError('email')">
+                E-mail输入格式不正确
+              </ng-container>
+              <ng-container *ngIf="employeeEditForm.get('email').hasError('required')">
+                请输入E-mail
+              </ng-container>
+            </nz-form-explain>
+          </nz-form-control>
+        </nz-form-item>
+        <!-- phone -->
+        <nz-form-item>
+          <nz-form-label [nzSpan]="7">手机号码</nz-form-label>
+          <div>
+            <nz-form-control [nzSpan]="12" nzHasFeedback>
+              <input nz-input placeholder="请输入手机号码" formControlName="phoneNumber">
+              <nz-form-explain *ngIf="employeeEditForm.get('phoneNumber').dirty&&employeeEditForm.get('phoneNumber').hasError('pattern')">手机号码格式不正确</nz-form-explain>
+            </nz-form-control>
+          </div>
+        </nz-form-item>
+        <!-- joinDate -->
+        <nz-form-item>
+          <nz-form-label [nzSm]="7" [nzXs]="24">入职时间</nz-form-label>
+          <nz-form-control [nzSm]="16" [nzXs]="24">
+            <nz-date-picker formControlName="joinDate"></nz-date-picker>
+            <nz-form-explain *ngIf="employeeEditForm.get('joinDate').dirty&&employeeEditForm.get('joinDate').errors">
+              <ng-container *ngIf="employeeEditForm.get('joinDate').hasError('date')">
+                入职时间不能早于今天
+              </ng-container>
+            </nz-form-explain>
+          </nz-form-control>
+        </nz-form-item>
+        <!-- add   button -->
+        <nz-form-item>
+          <nz-form-control [nzOffset]="7" [nzSpan]="12">
+            <button nz-button nzType="primary" [disabled]="!employeeEditForm.valid">添加</button>
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+  </nz-modal>
